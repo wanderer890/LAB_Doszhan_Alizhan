@@ -1,0 +1,155 @@
+# Labaratornaya-rabota-1
+Сравнение парадигм программирование на Python
+1. Сквозная задача
+
+Исходный список: [4, 7, 2, 9, 12, 5, 8, 3].
+
+Чётные числа: [4, 2, 12, 8]. Квадраты: [16, 4, 144, 64]. Сумма: 228.
+
+2. Императивный стиль
+
+numbers = [4, 7, 2, 9, 12, 5, 8, 3]
+total = 0
+even_numbers = []
+squares = []
+iterations = 0
+
+for number in numbers:
+    iterations += 1
+    if number % 2 == 0:
+        even_numbers.append(number)
+        square = number ** 2
+        squares.append(square)
+        total += square
+
+print("Чётные числа:", even_numbers)
+print("Квадраты:", squares)
+print("Сумма квадратов:", total)
+print("Количество итераций:", iterations)
+
+Изменяемое состояние: total, even_numbers, squares, iterations.
+
+3. Процедурный стиль
+
+def is_even(number: int) -> bool:
+    return number % 2 == 0
+
+def square(number: int) -> int:
+    return number ** 2
+
+def get_even_numbers(values: list[int]) -> list[int]:
+    return [number for number in values if is_even(number)]
+
+def sum_even_squares(values: list[int]) -> int:
+    return sum(square(number) for number in values if is_even(number))
+
+numbers = [4, 7, 2, 9, 12, 5, 8, 3]
+
+print(is_even(4))
+print(square(4))
+print("Чётные числа:", get_even_numbers(numbers))
+print("Сумма квадратов:", sum_even_squares(numbers))
+
+4. Объектно-ориентированный стиль
+
+class NumberCollection:
+    def __init__(self, numbers: list[int]):
+        self._numbers = list(numbers)
+
+    def get_even_numbers(self) -> list[int]:
+        return [n for n in self._numbers if n % 2 == 0]
+
+    def sum_even_squares(self) -> int:
+        total = 0
+        for number in self._numbers:
+            if number % 2 == 0:
+                total += number ** 2
+        return total
+
+    def count_even_numbers(self) -> int:
+        return len(self.get_even_numbers())
+
+    def find_maximum(self) -> int:
+        return max(self._numbers)
+
+    def calculate_average(self) -> float:
+        return sum(self._numbers) / len(self._numbers)
+
+collection = NumberCollection([4, 7, 2, 9, 12, 5, 8, 3])
+second = NumberCollection([2, 6, 10, 1])
+
+print(collection.get_even_numbers())
+print(collection.sum_even_squares())
+print(collection.count_even_numbers())
+print(collection.find_maximum())
+print(collection.calculate_average())
+print(second.sum_even_squares())
+
+self._numbers хранит состояние объекта — исходный набор чисел. Инкапсуляция объединяет данные и методы работы с ними внутри класса.
+
+5. Функциональный стиль
+
+numbers = [4, 7, 2, 9, 12, 5, 8, 3]
+
+squares = [n ** 2 for n in numbers if n % 2 == 0]
+result = sum(n ** 2 for n in numbers if n % 2 == 0)
+
+print("Квадраты:", squares)
+print("Сумма:", result)
+
+В функциональной версии отдельная изменяемая переменная-накопитель total не требуется.
+
+6. Индивидуальный вариант — 3 стиля
+
+Для демонстрации выбран вариант 1: найти сумму квадратов положительных чисел. Тестовые данные: [-3, 2, -1, 4, 5, -6]. Ожидаемый результат: 4 + 16 + 25 = 45.
+
+Императивный
+numbers = [-3, 2, -1, 4, 5, -6]
+total = 0
+for n in numbers:
+    if n > 0:
+        total += n ** 2
+print(total)  # 45
+
+ Процедурный
+def sum_positive_squares(values: list[int]) -> int:
+    total = 0
+    for n in values:
+        if n > 0:
+            total += n ** 2
+    return total
+
+print(sum_positive_squares([-3, 2, -1, 4, 5, -6]))  # 45
+
+Функциональный
+numbers = [-3, 2, -1, 4, 5, -6]
+result = sum(map(lambda n: n ** 2, filter(lambda n: n > 0, numbers)))
+print(result)  # 45
+
+
+
+8. Ответы на контрольные вопросы
+
+1. Парадигма программирования — способ организации программы и подход к решению задач.
+
+2. Состояние изменяется при присваивании total, добавлении элементов в списки и изменении счётчика.
+
+3. Процедурная декомпозиция — разделение алгоритма на функции, каждая из которых выполняет отдельную подзадачу.
+
+4. Объектом является экземпляр класса NumberCollection.
+
+5. Инкапсуляция проявляется в объединении данных self._numbers и методов работы с ними внутри класса.
+
+6. filter() отбирает элементы по условию, а map() преобразует каждый выбранный элемент.
+
+7. Генераторное выражение задаёт последовательность преобразований и позволяет обходиться без явного накопителя.
+
+8. Побочный эффект — изменение состояния вне локального результата функции, например изменение объекта или вывод на экран.
+
+9. Обработчик события выполняет действие в ответ на событие пользователя или системы.
+
+10. Да. В одной программе можно сочетать несколько парадигм.
+
+11. Функциональный и процедурный варианты проще тестировать, поскольку их функции можно проверять отдельно.
+
+12. Для обработки коллекций я бы выбрал функциональный стиль: он краткий, хорошо выражает цепочку отбора и преобразований и требует меньше изменяемого состояния.

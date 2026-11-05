@@ -1,0 +1,53 @@
+imperativnaya-Doszhan-Alizhan
+Программа для исследования последовательного изменения переменной x: x = 10 x = x + 5 x = x * 2 x = x - 8 x = x // 2 print(x)
+
+Таблица изменения состояния x
+
+Шаг	Команда	Значение x
+1	x = 10	10
+2	x = x + 5	15
+3	x = x * 2	30
+4	x = x - 8	22
+5	x = x // 2	11
+Контрольный вопрос: Почему команда x = x + 5 допустима в программировании, хотя это не обычное математическое равенство? Ответ: В программировании символ = является оператором присваивания, а не математическим знаком равенства. Сначала вычисляется выражение справа от знака равенства (x + 5), а затем полученное новое значение сохраняется в ячейку памяти переменной x.
+
+Задание 2. Расчет стоимости покупки Программа для вычисления стоимости без скидки, размера скидки и итоговой суммы:
+
+Получение входных данных от пользователя
+price = float(input("Введите цену товара: ")) quantity = int(input("Введите количество: ")) discount_percent = float(input("Введите процент скидки: "))
+
+Расчет состояния программы
+subtotal = price * quantity discount_amount = subtotal * (discount_percent / 100) total = subtotal - discount_amount
+
+Вывод результатов
+print(f"Стоимость без скидки: {subtotal}") print(f"Размер скидки: {discount_amount}") print(f"К оплате: {total}")
+
+Задание 3. Управление выполнением с помощью условия Программа определяет оценку по введенному баллу (0–100) и проверяет корректность ввода с помощью конструкций if / elif / else: score = float(input("Введите балл от 0 до 100: "))
+
+Проверка корректности ввода диапазона
+if 0 <= score <= 100: if score >= 90: grade = 'A' elif score >= 75: grade = 'B' elif score >= 50: grade = 'C' else: grade = 'F' print(f"Результат (оценка): {grade}") else: print("Ошибка: введено значение вне допустимого диапазона от 0 до 100!")
+
+Задание 4. Накопление состояния в цикле Анализ списка чисел без использования встроенной функции sum(): numbers = [12, 5, 8, 3, 21, 0, 14, -7]
+
+total_sum = 0 positive_sum = 0 positive_count = 0 negative_count = 0 zero_count = 0
+
+print("Итерация по элементам и изменение общей суммы:") for num in numbers: total_sum += num # Накопление общей суммы if num > 0: positive_sum += num positive_count += 1 elif num < 0: negative_count += 1 else: zero_count += 1 print(f"Число: {num} | Текущая общая сумма: {total_sum}")
+
+print("\n--- Итоговые результаты ---") print(f"Сумма всех чисел: {total_sum}") print(f"Сумма положительных чисел: {positive_sum}") print(f"Количество положительных: {positive_count}") print(f"Количество отрицательных: {negative_count}") print(f"Количество нулей: {zero_count}")
+
+Задание 5. Поиск максимального значения Поиск максимума в списке [67, 82, 45, 91, 76, 88, 54] без функции max(). scores = [67, 82, 45, 91, 76, 88, 54] maximum = scores[0]
+
+print("score | максимум до | score > maximum | максимум после") for score in scores: max_before = maximum is_greater = score > maximum if is_greater: maximum = score print(f"{score:5} | {max_before:11} | {str(is_greater):15} | {maximum}")
+
+print(f"\nНайденный максимум: {maximum}")
+
+Таблица трассировки изменения максимума
+
+score	максимум до	score > maximum	максимум после
+67	67	False	67
+82	67	True	82
+45	82	False	82
+91	82	True	91
+76	91	False	91
+88	91	False	91
+54	91	False	91
